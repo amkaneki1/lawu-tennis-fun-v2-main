@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login – Lawu Tennis Fun</title>
+  <!-- Import shared styles and fonts -->
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Override global colour variables to match the new green logo palette */
+    :root {
+      --primary-color: #006c3a; /* dark green for key UI elements */
+      --secondary-color: #8cc63e; /* lime green for secondary accents */
+      --accent-color: #f3fdf1; /* subtle background tint */
+      --highlight-color: #b3e258; /* bright yellow‑green for buttons */
+      --danger-color: #e63946; /* red for error states */
+      --card-bg: #ffffff;
+      --text-color: #003d1f; /* deep green for text */
+    }
+    /* Page‑specific styling for a modern, immersive login experience */
+    body {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .login-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .login-card img.logo {
+      width: 120px;
+      margin-bottom: 1rem;
+    }
+    .login-card h1 {
+      font-size: 1.75rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+    .login-card p.subtitle {
+      color: var(--secondary-color);
+      margin-bottom: 1.5rem;
+    }
+    .login-card .input-group {
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    .login-card input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--secondary-color);
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+    .login-card label {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+    .login-card button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .login-card button:hover {
+      background-color: var(--secondary-color);
+    }
+    .login-card .links {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+    }
+    .login-card .links a {
+      color: var(--highlight-color);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <!-- Use the provided logo; ensure images directory exists in the repository -->
+    <!-- Use root-level logo file -->
+    <img src="logo.jpeg" alt="Lawu Tennis Fun Logo" class="logo" />
+    <h1>Welcome Back!</h1>
+    <p class="subtitle">Log in to continue</p>
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="loginUsername">Username</label>
+        <input type="text" id="loginUsername" placeholder="Your username" required />
+      </div>
+      <div class="input-group">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="Your password" required />
+      </div>
+      <button type="submit">Log In</button>
+    </form>
+    <div class="links">
+      Don't have an account? <a href="signup.html">Sign Up</a><br />
+      Forgot your password? <a href="reset_password.html">Reset here</a>
+    </div>
+  </div>
+  <!-- Include authentication and page logic -->
+  <script src="auth.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>

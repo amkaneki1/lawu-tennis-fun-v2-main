@@ -1,0 +1,635 @@
+/* Global resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*
+ * Define a palette of CSS variables to provide a cohesive colour scheme. The
+ * primary palette uses teal and mint tones with a warm accent, evoking
+ * freshness and energy appropriate for a tennis brand. If you need to tweak
+ * colours, adjust the values here and the rest of the site will update
+ * automatically.
+ */
+:root {
+  /* Updated colour palette based on green tennis logo theme */
+  --primary-color: #2E7D32; /* deep green for headings and primary accents */
+  --secondary-color: #81C784; /* soft green for secondary elements and hovers */
+  --accent-color: #D1F2EB; /* light green background for pages */
+  --highlight-color: #4CAF50; /* active buttons */
+  --danger-color: #FF5722; /* red/orange for delete actions */
+  --card-bg: #ffffff;
+  --text-color: #333333;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text-color);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/*
+ * Generic page background. Utilises the accent colour defined in the palette
+ * above to produce an airy, modern feel.
+ */
+.beige-bg {
+  background-color: var(--accent-color);
+}
+
+/* Main card container */
+.main-card {
+  background-color: var(--card-bg);
+  margin: 0 auto;
+  flex-grow: 1;
+  width: 100%;
+  max-width: 700px;
+  padding: 30px 20px 80px 20px; /* bottom padding to avoid nav overlap */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/* Hero section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  letter-spacing: 4px;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Section styling */
+.section {
+  margin-bottom: 30px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.section-header h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.see-all {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.message {
+  margin-bottom: 10px;
+  color: #777;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background-color: var(--highlight-color);
+  color: var(--primary-color);
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+}
+
+/* Bottom navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: #ffffff;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  text-decoration: none;
+  color: #888;
+  font-size: 0.75rem;
+}
+
+.nav-item .nav-icon {
+  font-size: 1.2rem;
+  margin-bottom: 2px;
+}
+
+.nav-item.active, .nav-item:hover {
+  color: var(--primary-color);
+}
+
+/* Schedule page specific */
+.inner-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.inner-header .back-link {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #3a614d;
+  font-size: 1.2rem;
+}
+
+.inner-header h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #3a614d;
+}
+
+/* Controls section schedule page */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.controls label {
+  font-weight: 600;
+  color: #3a614d;
+}
+.controls input[type="date"] {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+.controls button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease;
+}
+.controls button:hover {
+  background-color: #004e55;
+}
+
+/* Table styling reused from original schedule design but adapted colors */
+#scheduleContainer table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+#scheduleContainer th, #scheduleContainer td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+#scheduleContainer th {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+#scheduleContainer td.booked {
+  background-color: #e57373;
+  color: white;
+}
+
+#scheduleContainer td.available {
+  background-color: #c5e1a5;
+  cursor: pointer;
+}
+#scheduleContainer td.available:hover {
+  background-color: #b4d38f;
+}
+
+.reset-section {
+  text-align: center;
+}
+.reset-section button {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--danger-color);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+.reset-section button:hover {
+  background-color: #c62828;
+}
+
+/* Generic card lists used on packages and other pages */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.card-item {
+  background-color: var(--accent-color);
+  border: 1px solid #e0d8ce;
+  border-radius: 8px;
+  padding: 20px;
+}
+.card-item h3 {
+  margin-bottom: 5px;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.card-item p {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+/* Booking list styles for bookings page */
+.booking-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.booking-item {
+  background-color: var(--accent-color);
+  border: 1px solid #e0d8ce;
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+/* Session list styling for schedule page */
+.session-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.session-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--accent-color);
+  border: 1px solid #e0d8ce;
+  border-radius: 8px;
+  padding: 18px;
+}
+.session-time {
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-right: 15px;
+}
+.session-details h3 {
+  margin-bottom: 4px;
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+.session-details p {
+  font-size: 0.85rem;
+  color: #555;
+}
+.session-actions {
+  text-align: right;
+}
+.session-actions .spots {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+  color: #666;
+}
+.session-actions .spots.full {
+  color: var(--danger-color);
+}
+.session-actions .btn {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+}
+
+/* Promo card styling */
+.promo-card {
+  background-color: #f8f5ef;
+  border: 1px solid #e0d8ce;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+.promo-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+.promo-card p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+.promo-code {
+  font-weight: 600;
+  color: var(--danger-color);
+}
+
+/* Class detail promo container */
+.promo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.promo-container label {
+  font-size: 0.9rem;
+  color: var(--primary-color);
+}
+.promo-container input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background-color: #f5f5f5;
+}
+
+/* Success message styling */
+.message.success {
+  color: #2a9d8f;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
+/* Authentication pages (login, signup, reset) */
+.auth-card {
+  max-width: 420px;
+  width: 100%;
+  margin: 60px auto;
+  padding: 40px 30px 50px;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.auth-card:hover {
+  transform: translateY(-4px);
+}
+.auth-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 24px;
+  text-align: center;
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.auth-form label {
+  font-size: 1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.auth-form input {
+  padding: 12px 14px;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #f5f5f5;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0,109,119,0.2);
+}
+.auth-note {
+  font-size: 0.9rem;
+  margin-top: 16px;
+  text-align: center;
+}
+.auth-note a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+.auth-note a:hover {
+  text-decoration: underline;
+}
+
+/* Class detail page styling */
+.detail-list p {
+  margin: 6px 0;
+  font-size: 0.9rem;
+  color: #333;
+}
+.detail-list p strong {
+  color: #3a614d;
+}
+
+/* Transactions page */
+.tabs {
+  display: flex;
+  margin-bottom: 16px;
+}
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  background-color: #f0ebe3;
+  border: 1px solid #d7cdbf;
+  border-bottom: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #3a614d;
+}
+.tab-btn.active {
+  background-color: #ffffff;
+  font-weight: 600;
+}
+.transaction-list {
+  border: 1px solid #d7cdbf;
+  border-radius: 0 0 6px 6px;
+  padding: 16px;
+  background-color: #fff;
+}
+.transaction-card {
+  border: 1px solid #e0d8ce;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background-color: #f8f5ef;
+}
+.transaction-card p {
+  margin: 4px 0;
+  font-size: 0.85rem;
+}
+.transaction-card a.btn {
+  margin-top: 8px;
+  display: inline-block;
+}
+
+/* Transaction detail page */
+.transaction-detail-card {
+  background-color: #f8f5ef;
+  border: 1px solid #e0d8ce;
+  border-radius: 6px;
+  padding: 16px;
+}
+.transaction-detail-card p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+}
+.transaction-detail-card h3 {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #3a614d;
+}
+
+/* Profile page enhancements */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+.profile-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.profile-info h3 {
+  margin-bottom: 4px;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+.profile-info p {
+  font-size: 0.9rem;
+  color: #666;
+}
+.profile-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profile-menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background-color: #f8f5ef;
+  border: 1px solid #e0d8ce;
+  border-radius: 6px;
+  color: #3a614d;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+.profile-menu-item span {
+  color: #888;
+  font-size: 1.2rem;
+}
+.profile-menu-item:hover {
+  background-color: #e9e2d9;
+}
+
+/*
+ * Profile edit card styles. These classes produce a clean card with
+ * generous padding and subtle shadow, plus a responsive two‑column grid
+ * layout for the form fields. Use the `full-width` class on grid items
+ * that should span both columns (e.g. full name and notes).
+ */
+.profile-edit-card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 20px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+#profileForm .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+#profileForm .form-grid .full-width {
+  grid-column: 1 / 3;
+}
+#profileForm label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--primary-color);
+}
+#profileForm input,
+#profileForm textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  background-color: #f5f5f5;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+#profileForm input:focus,
+#profileForm textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0,109,119,0.2);
+}
+
+/* Payment proof form */
+.payment-form label {
+  display: block;
+  margin: 8px 0 4px;
+  font-size: 0.9rem;
+  color: #3a614d;
+}
+.payment-form input[type="text"],
+.payment-form input[type="file"] {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #d7cdbf;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}

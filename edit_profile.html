@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Profile - Lawu Tennis Fun</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="beige-bg">
+  <div class="main-card">
+    <header class="inner-header">
+      <a href="profile.html" class="back-link">← Back</a>
+      <h1>Edit Profile</h1>
+    </header>
+    <section class="section">
+      <!-- Modern form container with grid layout -->
+      <div class="profile-edit-card">
+        <form id="profileForm">
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" required disabled />
+            </div>
+            <div class="form-group">
+              <label for="phone">WhatsApp Number</label>
+              <input type="tel" id="phone" />
+            </div>
+            <div class="form-group">
+              <label for="instagram">Instagram</label>
+              <input type="text" id="instagram" />
+            </div>
+            <div class="form-group">
+              <label for="birthDate">Birth Date</label>
+              <input type="date" id="birthDate" />
+            </div>
+            <div class="form-group full-width">
+              <label for="notes">Notes</label>
+              <textarea id="notes" rows="3"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn" style="margin-top:20px;width:100%;">Update Data</button>
+        </form>
+      </div>
+    </section>
+  </div>
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Home</span>
+    </a>
+    <a href="schedule.html" class="nav-item">
+      <span class="nav-icon">🎾</span>
+      <span class="nav-label">Classes</span>
+    </a>
+    <a href="packages.html" class="nav-item">
+      <span class="nav-icon">📦</span>
+      <span class="nav-label">Packages</span>
+    </a>
+    <a href="bookings.html" class="nav-item">
+      <span class="nav-icon">📅</span>
+      <span class="nav-label">Bookings</span>
+    </a>
+    <a href="profile.html" class="nav-item active">
+      <span class="nav-icon">👤</span>
+      <span class="nav-label">Profile</span>
+    </a>
+  </nav>
+  <script src="auth.js"></script>
+  <script src="editProfile.js"></script>
+</body>
+</html>

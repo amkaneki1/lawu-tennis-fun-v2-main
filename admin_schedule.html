@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manajemen Jadwal – Lawu Tennis Fun</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="beige-bg">
+  <div class="main-card">
+    <header class="inner-header">
+      <a href="admin_dashboard.html" class="back-link">← Kembali</a>
+      <h1>Manajemen Jadwal</h1>
+    </header>
+    <section class="section">
+      <h2>Tambah Sesi Baru</h2>
+      <form id="addSessionForm" class="auth-form" style="margin-bottom:20px;">
+        <label for="sessionDate">Tanggal</label>
+        <input type="date" id="sessionDate" required />
+        <label for="sessionTime">Waktu</label>
+        <input type="time" id="sessionTime" required />
+        <label for="sessionDuration">Durasi (menit)</label>
+        <input type="number" id="sessionDuration" min="30" step="15" required />
+        <label for="sessionTitle">Judul</label>
+        <input type="text" id="sessionTitle" required />
+        <label for="sessionCoach">Pelatih</label>
+        <input type="text" id="sessionCoach" required />
+        <label for="sessionLocation">Lokasi</label>
+        <input type="text" id="sessionLocation" required />
+        <!-- Gender field removed per new requirements -->
+        <label for="sessionMaxSlots">Kuota Maksimum</label>
+        <input type="number" id="sessionMaxSlots" min="1" value="8" required />
+        <label for="sessionPrice">Harga (opsional)</label>
+        <input type="number" id="sessionPrice" min="0" step="10000" placeholder="Harga dalam IDR" />
+        <button type="submit" class="btn" style="width:100%;margin-top:12px;">Tambah Sesi</button>
+      </form>
+    </section>
+    <section class="section">
+      <h2>Sesi Tersedia</h2>
+      <div style="overflow-x:auto;">
+        <table id="sessionsTable" style="width:100%;border-collapse:collapse;">
+          <thead>
+            <tr>
+              <th style="border:1px solid #ddd;padding:6px;">Tanggal</th>
+              <th style="border:1px solid #ddd;padding:6px;">Waktu</th>
+              <th style="border:1px solid #ddd;padding:6px;">Durasi</th>
+              <th style="border:1px solid #ddd;padding:6px;">Judul</th>
+              <th style="border:1px solid #ddd;padding:6px;">Pelatih</th>
+              <th style="border:1px solid #ddd;padding:6px;">Lokasi</th>
+              <th style="border:1px solid #ddd;padding:6px;">Kuota</th>
+              <th style="border:1px solid #ddd;padding:6px;">Dipesan</th>
+              <th style="border:1px solid #ddd;padding:6px;">Harga</th>
+              <th style="border:1px solid #ddd;padding:6px;">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="sessionsBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+  <script src="auth.js"></script>
+  <script src="admin_schedule.js"></script>
+</body>
+</html>

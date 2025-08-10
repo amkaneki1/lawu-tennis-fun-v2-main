@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manajemen Paket – Lawu Tennis Fun</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="beige-bg">
+  <div class="main-card">
+    <header class="inner-header">
+      <a href="admin_dashboard.html" class="back-link">← Kembali</a>
+      <h1>Manajemen Paket</h1>
+    </header>
+    <section class="section">
+      <h2>Tambah / Edit Paket</h2>
+      <form id="packageForm" class="auth-form" style="margin-bottom:20px;">
+        <label for="pkgName">Nama Paket</label>
+        <input type="text" id="pkgName" required />
+        <label for="pkgPrice">Harga (IDR)</label>
+        <input type="number" id="pkgPrice" min="0" step="10000" required />
+        <label for="pkgExpiry">Masa Berlaku</label>
+        <input type="text" id="pkgExpiry" placeholder="Contoh: Berlaku 1 bulan" required />
+        <label for="pkgType">Jenis</label>
+        <select id="pkgType">
+          <option value="Public">Umum</option>
+          <option value="Private">Privat</option>
+        </select>
+        <label for="pkgDescription">Deskripsi</label>
+        <textarea id="pkgDescription" rows="3" style="padding:8px;border:1px solid #d7cdbf;border-radius:4px;font-size:0.9rem;" required></textarea>
+        <button type="submit" class="btn" style="width:100%;margin-top:12px;">Simpan Paket</button>
+      </form>
+    </section>
+    <section class="section">
+      <h2>Paket Tersedia</h2>
+      <div style="overflow-x:auto;">
+        <table id="packagesTable" style="width:100%;border-collapse:collapse;">
+          <thead>
+            <tr>
+              <th style="border:1px solid #ddd;padding:6px;">Nama</th>
+              <th style="border:1px solid #ddd;padding:6px;">Harga</th>
+              <th style="border:1px solid #ddd;padding:6px;">Masa Berlaku</th>
+              <th style="border:1px solid #ddd;padding:6px;">Jenis</th>
+              <th style="border:1px solid #ddd;padding:6px;">Deskripsi</th>
+              <th style="border:1px solid #ddd;padding:6px;">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="packagesBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+  <script src="auth.js"></script>
+  <script src="admin_packages.js"></script>
+</body>
+</html>

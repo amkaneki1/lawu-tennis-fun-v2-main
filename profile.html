@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile - Lawu Tennis Fun</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="beige-bg">
+  <div class="main-card">
+    <header class="inner-header">
+      <a href="index.html" class="back-link">← Back</a>
+      <h1>Profile</h1>
+    </header>
+    <section class="section">
+      <div class="profile-header">
+        <div class="profile-avatar" id="profileAvatar">A</div>
+        <div class="profile-info">
+          <h3 id="profileName">Guest</h3>
+          <p id="profileEmail">—</p>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="profile-menu">
+        <a href="edit_profile.html" class="profile-menu-item">Edit Profile<span>›</span></a>
+        <a href="transactions.html" class="profile-menu-item">My Transactions<span>›</span></a>
+        <a href="my_packages.html" class="profile-menu-item">My Packages<span>›</span></a>
+        <a href="bookings.html" class="profile-menu-item">My Bookings<span>›</span></a>
+        <a href="admin_dashboard.html" id="adminPanelLink" class="profile-menu-item" style="display:none;">Admin Dashboard<span>›</span></a>
+      </div>
+    </section>
+    <section class="section">
+      <div class="profile-menu">
+        <a href="about.html" class="profile-menu-item">About Us<span>›</span></a>
+        <a href="contact.html" class="profile-menu-item">Contact Us<span>›</span></a>
+      </div>
+    </section>
+    <section class="section">
+      <button id="logoutButton" class="btn" style="background-color:#e57373;color:white;width:100%;">Log Out</button>
+    </section>
+  </div>
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Home</span>
+    </a>
+    <a href="schedule.html" class="nav-item">
+      <span class="nav-icon">🎾</span>
+      <span class="nav-label">Classes</span>
+    </a>
+    <a href="packages.html" class="nav-item">
+      <span class="nav-icon">📦</span>
+      <span class="nav-label">Packages</span>
+    </a>
+    <a href="bookings.html" class="nav-item">
+      <span class="nav-icon">📅</span>
+      <span class="nav-label">Bookings</span>
+    </a>
+    <a href="profile.html" class="nav-item active">
+      <span class="nav-icon">👤</span>
+      <span class="nav-label">Profile</span>
+    </a>
+  </nav>
+  <script src="auth.js"></script>
+  <script src="profile.js"></script>
+</body>
+</html>

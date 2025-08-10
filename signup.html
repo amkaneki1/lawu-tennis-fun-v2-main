@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up – Lawu Tennis Fun</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Override global colour variables to match the new green logo palette */
+    :root {
+      --primary-color: #006c3a;
+      --secondary-color: #8cc63e;
+      --accent-color: #f3fdf1;
+      --highlight-color: #b3e258;
+      --danger-color: #e63946;
+      --card-bg: #ffffff;
+      --text-color: #003d1f;
+    }
+    body {
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .signup-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 450px;
+      text-align: center;
+    }
+    .signup-card img.logo {
+      width: 120px;
+      margin-bottom: 1rem;
+    }
+    .signup-card h1 {
+      font-size: 1.75rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+    .signup-card p.subtitle {
+      color: var(--secondary-color);
+      margin-bottom: 1.5rem;
+    }
+    .signup-card .input-group {
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    .signup-card input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--secondary-color);
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+    .signup-card label {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+    .signup-card button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .signup-card button:hover {
+      background-color: var(--secondary-color);
+    }
+    .signup-card .links {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+    }
+    .signup-card .links a {
+      color: var(--highlight-color);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-card">
+    <!-- Use root-level logo file -->
+    <img src="logo.jpeg" alt="Lawu Tennis Fun Logo" class="logo" />
+    <h1>Create Account</h1>
+    <p class="subtitle">Join the fun and stay fit!</p>
+    <form id="signupForm">
+      <div class="input-group">
+        <label for="signupName">Full Name</label>
+        <input type="text" id="signupName" placeholder="Your full name" required />
+      </div>
+      <div class="input-group">
+        <label for="signupUsername">Username</label>
+        <input type="text" id="signupUsername" placeholder="Choose a username" required />
+      </div>
+      <div class="input-group">
+        <label for="signupPhone">Phone Number</label>
+        <input type="tel" id="signupPhone" placeholder="Your phone number" required />
+      </div>
+      <div class="input-group">
+        <label for="signupPassword">Password</label>
+        <input type="password" id="signupPassword" placeholder="Create a password" required />
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
+    <div class="links">
+      Already have an account? <a href="login.html">Log In</a>
+    </div>
+  </div>
+  <script src="auth.js"></script>
+  <script src="signup.js"></script>
+</body>
+</html>

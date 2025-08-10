@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard – Lawu Tennis Fun</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="beige-bg">
+  <div class="main-card">
+    <header class="inner-header">
+      <a href="profile.html" class="back-link" id="dashboardBack">← Back</a>
+      <h1 id="dashboardTitle">Admin Dashboard</h1>
+      <div class="language-switcher" style="margin-left:auto;">
+        <label for="langSelect" style="margin-right:6px;">Language:</label>
+        <select id="langSelect">
+          <option value="id">Indonesia</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+    </header>
+    <section class="section">
+      <h2>Manajemen</h2>
+      <div class="card-list">
+        <div class="card-item">
+          <h3 id="userMgmtTitle">User Management</h3>
+          <p id="userMgmtDesc">View and manage registered users.</p>
+          <a href="admin_users.html" class="btn" id="userMgmtBtn">Open</a>
+        </div>
+        <div class="card-item">
+          <h3 id="scheduleMgmtTitle">Schedule Management</h3>
+          <p id="scheduleMgmtDesc">Create and edit training sessions.</p>
+          <a href="admin_schedule.html" class="btn" id="scheduleMgmtBtn">Open</a>
+        </div>
+        <div class="card-item">
+          <h3 id="packageMgmtTitle">Package Management</h3>
+          <p id="packageMgmtDesc">Define membership packages.</p>
+          <a href="admin_packages.html" class="btn" id="packageMgmtBtn">Open</a>
+        </div>
+        <div class="card-item">
+          <h3 id="transactionMgmtTitle">Transactions</h3>
+          <p id="transactionMgmtDesc">Review and update transaction statuses.</p>
+          <a href="transactions.html" class="btn" id="transactionMgmtBtn">Open</a>
+        </div>
+        <div class="card-item">
+          <h3 id="couponMgmtTitle">Coupon Management</h3>
+          <p id="couponMgmtDesc">Add, delete and manage vouchers.</p>
+          <a href="admin_coupons.html" class="btn" id="couponMgmtBtn">Open</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="auth.js"></script>
+  <script>
+    // Only allow access if admin and initialize language
+    document.addEventListener('DOMContentLoaded', () => {
+      requireAdmin();
+      const langSelect = document.getElementById('langSelect');
+      // Load saved language or default to id
+      const savedLang = localStorage.getItem('lawuTennisLang') || 'id';
+      langSelect.value = savedLang;
+      applyLanguage(savedLang);
+      langSelect.addEventListener('change', () => {
+        const value = langSelect.value;
+        localStorage.setItem('lawuTennisLang', value);
+        applyLanguage(value);
+      });
+    });
+
+    /**
+     * Applies translations to the dashboard cards based on the selected language.
+     * Supported languages: 'id' (Bahasa Indonesia), 'en' (English).
+     */
+    function applyLanguage(lang) {
+      const translations = {
+        id: {
+          dashboardTitle: 'Dasbor Admin',
+          back: '← Kembali',
+          userMgmtTitle: 'Manajemen Pengguna',
+          userMgmtDesc: 'Lihat dan kelola pengguna terdaftar.',
+          userMgmtBtn: 'Buka',
+          scheduleMgmtTitle: 'Manajemen Jadwal',
+          scheduleMgmtDesc: 'Buat dan edit sesi latihan.',
+          scheduleMgmtBtn: 'Buka',
+          packageMgmtTitle: 'Manajemen Paket',
+          packageMgmtDesc: 'Definisikan paket keanggotaan.',
+          packageMgmtBtn: 'Buka',
+          transactionMgmtTitle: 'Transaksi',
+          transactionMgmtDesc: 'Tinjau dan perbarui status transaksi.',
+          transactionMgmtBtn: 'Buka',
+          couponMgmtTitle: 'Manajemen Kupon',
+          couponMgmtDesc: 'Tambah, hapus dan kelola voucher.',
+          couponMgmtBtn: 'Buka'
+        },
+        en: {
+          dashboardTitle: 'Admin Dashboard',
+          back: '← Back',
+          userMgmtTitle: 'User Management',
+          userMgmtDesc: 'View and manage registered users.',
+          userMgmtBtn: 'Open',
+          scheduleMgmtTitle: 'Schedule Management',
+          scheduleMgmtDesc: 'Create and edit training sessions.',
+          scheduleMgmtBtn: 'Open',
+          packageMgmtTitle: 'Package Management',
+          packageMgmtDesc: 'Define membership packages.',
+          packageMgmtBtn: 'Open',
+          transactionMgmtTitle: 'Transactions',
+          transactionMgmtDesc: 'Review and update transaction statuses.',
+          transactionMgmtBtn: 'Open',
+          couponMgmtTitle: 'Coupon Management',
+          couponMgmtDesc: 'Add, delete and manage vouchers.',
+          couponMgmtBtn: 'Open'
+        }
+      };
+      const t = translations[lang] || translations['id'];
+      document.getElementById('dashboardTitle').textContent = t.dashboardTitle;
+      document.getElementById('dashboardBack').textContent = t.back;
+      document.getElementById('userMgmtTitle').textContent = t.userMgmtTitle;
+      document.getElementById('userMgmtDesc').textContent = t.userMgmtDesc;
+      document.getElementById('userMgmtBtn').textContent = t.userMgmtBtn;
+      document.getElementById('scheduleMgmtTitle').textContent = t.scheduleMgmtTitle;
+      document.getElementById('scheduleMgmtDesc').textContent = t.scheduleMgmtDesc;
+      document.getElementById('scheduleMgmtBtn').textContent = t.scheduleMgmtBtn;
+      document.getElementById('packageMgmtTitle').textContent = t.packageMgmtTitle;
+      document.getElementById('packageMgmtDesc').textContent = t.packageMgmtDesc;
+      document.getElementById('packageMgmtBtn').textContent = t.packageMgmtBtn;
+      document.getElementById('transactionMgmtTitle').textContent = t.transactionMgmtTitle;
+      document.getElementById('transactionMgmtDesc').textContent = t.transactionMgmtDesc;
+      document.getElementById('transactionMgmtBtn').textContent = t.transactionMgmtBtn;
+      document.getElementById('couponMgmtTitle').textContent = t.couponMgmtTitle;
+      document.getElementById('couponMgmtDesc').textContent = t.couponMgmtDesc;
+      document.getElementById('couponMgmtBtn').textContent = t.couponMgmtBtn;
+    }
+  </script>
+</body>
+</html>

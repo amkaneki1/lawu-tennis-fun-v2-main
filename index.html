@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lawu Tennis Fun</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Override global colour variables to match the new green logo palette */
+    :root {
+      --primary-color: #006c3a;
+      --secondary-color: #8cc63e;
+      --accent-color: #f3fdf1;
+      --highlight-color: #b3e258;
+      --danger-color: #e63946;
+      --card-bg: #ffffff;
+      --text-color: #003d1f;
+    }
+    /* Modern hero styling for the home page */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 0;
+      text-align: center;
+    }
+    .hero .logo-img {
+      width: 160px;
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin: 0;
+    }
+    .hero p.tagline {
+      font-size: 1rem;
+      color: var(--secondary-color);
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body style="background: linear-gradient(135deg, var(--accent-color), #ffffff);">
+  <div class="main-card">
+    <header class="hero">
+      <!-- Use root-level logo file -->
+      <img src="logo.jpeg" alt="Lawu Tennis Fun Logo" class="logo-img" />
+      <h1>Welcome to Lawu Tennis Fun</h1>
+      <p class="tagline">Stay active and have fun with our tennis programs</p>
+    </header>
+    <!-- Bookings summary section dynamically filled via script -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Bookings</h2>
+        <a href="bookings.html" class="see-all">See All</a>
+      </div>
+      <p id="bookingsSummary" class="message">Loading bookings…</p>
+      <a href="schedule.html" class="btn">Browse Schedule</a>
+    </section>
+    <!-- Promotions summary section dynamically filled via script -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Promos</h2>
+        <a href="promos.html" class="see-all">See All</a>
+      </div>
+      <p id="promosSummary" class="message">Loading promotions…</p>
+    </section>
+  </div>
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item active">
+      <ion-icon name="home-outline" class="nav-icon"></ion-icon>
+      <span class="nav-label">Home</span>
+    </a>
+    <a href="schedule.html" class="nav-item">
+      <ion-icon name="calendar-outline" class="nav-icon"></ion-icon>
+      <span class="nav-label">Classes</span>
+    </a>
+    <a href="packages.html" class="nav-item">
+      <ion-icon name="pricetag-outline" class="nav-icon"></ion-icon>
+      <span class="nav-label">Packages</span>
+    </a>
+    <a href="bookings.html" class="nav-item">
+      <ion-icon name="bookmark-outline" class="nav-icon"></ion-icon>
+      <span class="nav-label">Bookings</span>
+    </a>
+    <a href="profile.html" class="nav-item">
+      <ion-icon name="person-outline" class="nav-icon"></ion-icon>
+      <span class="nav-label">Profile</span>
+    </a>
+  </nav>
+  <!-- Load Ionicons library for bottom navigation icons -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="auth.js"></script>
+  <script src="home.js"></script>
+</body>
+</html>
