@@ -10,6 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const listEl = document.getElementById('transactionList');
   let currentTab = 'Pending';
 
+  // Apply navigation and page heading translations
+  try {
+    if (typeof applyNavTranslations === 'function') {
+      applyNavTranslations();
+    }
+    const headingEl = document.getElementById('transactionsTitle');
+    if (headingEl && typeof getTranslation === 'function') {
+      headingEl.textContent = getTranslation('headings','transactions', headingEl.textContent);
+    }
+  } catch (e) {}
+
   function renderTransactions() {
     listEl.innerHTML = '';
     const transactions = JSON.parse(localStorage.getItem('lawuTennisTransactions')) || [];
@@ -18,18 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const profiles = JSON.parse(localStorage.getItem('lawuTennisProfiles')) || {};
     const profile = profiles[currentUser] || {};
     const isAdmin = !!profile.isAdmin;
+    // Define which statuses are considered pending or completed
+    const pendingStatuses = ['Pending Payment', 'Proof Submitted'];
+    const completedStatuses = ['Paid', 'Rejected'];
     const filtered = transactions.filter(tx => {
-      // For non-admin users only show their own transactions. Skip any transactions
-      // that do not belong to them or do not specify a username.
       if (!isAdmin) {
-        return tx.username === currentUser && (
-          (currentTab === 'Pending' && tx.status === 'Pending Payment') ||
-          (currentTab === 'Completed' && tx.status !== 'Pending Payment')
-        );
+        // Non-admin: only show transactions belonging to the current user
+        if (tx.username !== currentUser) return false;
+        if (currentTab === 'Pending') return pendingStatuses.includes(tx.status);
+        return completedStatuses.includes(tx.status);
       }
-      // For admins show all transactions based on status
-      if (currentTab === 'Pending') return tx.status === 'Pending Payment';
-      return tx.status !== 'Pending Payment';
+      // Admin: show all by status
+      if (currentTab === 'Pending') return pendingStatuses.includes(tx.status);
+      return completedStatuses.includes(tx.status);
     });
     if (filtered.length === 0) {
       const msg = document.createElement('p');
@@ -55,12 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
         <p><strong>Price:</strong> ${priceDisplay}</p>
       `;
       if (isAdmin) {
-        // Admin actions: approve/reject on pending or delete on completed
-        if (tx.status === 'Pending Payment') {
+        // Admin actions based on transaction status
+        if (pendingStatuses.includes(tx.status)) {
+          // Show approve and reject buttons
           const acceptBtn = document.createElement('button');
           acceptBtn.className = 'btn';
           acceptBtn.style.marginRight = '8px';
-          acceptBtn.textContent = 'Tandai Lunas';
+          acceptBtn.textContent = (typeof getTranslation === 'function' ? getTranslation('buttons','approve','Approve') : 'Approve');
           acceptBtn.addEventListener('click', () => {
             markTransactionPaid(tx.id);
           });
@@ -68,21 +81,42 @@ document.addEventListener('DOMContentLoaded', () => {
           rejectBtn.className = 'btn';
           rejectBtn.style.backgroundColor = 'var(--danger-color)';
           rejectBtn.style.color = '#ffffff';
-          rejectBtn.textContent = 'Tolak';
           rejectBtn.style.marginRight = '8px';
+          rejectBtn.textContent = (typeof getTranslation === 'function' ? getTranslation('buttons','reject','Reject') : 'Reject');
           rejectBtn.addEventListener('click', () => {
-            deleteTransaction(tx.id);
+            markTransactionRejected(tx.id);
           });
           card.appendChild(acceptBtn);
           card.appendChild(rejectBtn);
+          // If there is a proof file, allow admin to view it
+          if (tx.proofFileData) {
+            const viewBtn = document.createElement('button');
+            viewBtn.className = 'btn';
+            viewBtn.style.marginRight = '8px';
+            viewBtn.textContent = (typeof getTranslation === 'function' ? getTranslation('buttons','viewProof','View Proof') : 'View Proof');
+            viewBtn.addEventListener('click', () => {
+              viewProof(tx);
+            });
+            card.appendChild(viewBtn);
+          }
         } else {
-          // Completed or other transactions: show detail and delete buttons
+          // Completed or rejected transactions
           const detailLink = document.createElement('a');
           detailLink.href = 'transaction_detail.html?id=' + encodeURIComponent(tx.id);
           detailLink.className = 'btn';
           detailLink.style.marginRight = '8px';
-          detailLink.textContent = 'Detail';
+          detailLink.textContent = (typeof getTranslation === 'function' ? getTranslation('buttons','detail','Detail') : 'Detail');
           card.appendChild(detailLink);
+          if (tx.proofFileData) {
+            const viewBtn = document.createElement('button');
+            viewBtn.className = 'btn';
+            viewBtn.style.marginRight = '8px';
+            viewBtn.textContent = (typeof getTranslation === 'function' ? getTranslation('buttons','viewProof','View Proof') : 'View Proof');
+            viewBtn.addEventListener('click', () => {
+              viewProof(tx);
+            });
+            card.appendChild(viewBtn);
+          }
           const deleteBtn = document.createElement('button');
           deleteBtn.className = 'btn';
           deleteBtn.style.backgroundColor = 'var(--danger-color)';
@@ -98,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const detailLink = document.createElement('a');
         detailLink.href = 'transaction_detail.html?id=' + encodeURIComponent(tx.id);
         detailLink.className = 'btn';
-        detailLink.textContent = 'Detail';
+        detailLink.textContent = (typeof getTranslation === 'function' ? getTranslation('buttons','detail','Detail') : 'Detail');
         card.appendChild(detailLink);
       }
       listEl.appendChild(card);
@@ -130,6 +164,29 @@ function markTransactionPaid(id) {
     localStorage.setItem('lawuTennisTransactions', JSON.stringify(transactions));
     // Refresh view by triggering pending tab click
     document.getElementById('pendingTab').click();
+  }
+}
+
+// Helper function to mark a transaction as rejected
+function markTransactionRejected(id) {
+  let transactions = JSON.parse(localStorage.getItem('lawuTennisTransactions')) || [];
+  const idx = transactions.findIndex(tx => tx.id === id);
+  if (idx !== -1) {
+    transactions[idx].status = 'Rejected';
+    localStorage.setItem('lawuTennisTransactions', JSON.stringify(transactions));
+    document.getElementById('pendingTab').click();
+  }
+}
+
+// Helper to view proof data in a new window
+function viewProof(tx) {
+  if (!tx.proofFileData) return;
+  const newWin = window.open('', '_blank');
+  newWin.document.write('<title>Payment Proof</title>');
+  if (tx.proofFileData.startsWith('data:image')) {
+    newWin.document.write('<img src="' + tx.proofFileData + '" style="max-width:100%; height:auto;">');
+  } else {
+    newWin.document.write('<object data="' + tx.proofFileData + '" type="application/pdf" width="100%" height="600px"></object>');
   }
 }
 
